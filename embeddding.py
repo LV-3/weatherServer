@@ -1,10 +1,11 @@
 import openai
-
-openai.api_key ='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'
+from dotenv import load_dotenv
+import os
 
 class Embedding:
     def __init__(self) -> None:
-        pass
+        load_dotenv()
+        openai.api_key = os.getenv("OPEN_API_KEY")
 
 
     def encoding(self, word: str) -> list[float]:    
