@@ -21,7 +21,7 @@ class ExtractWord:
         load_dotenv()
         
         self.openai_api_key=os.getenv("OPEN_API_KEY")
-        self.llm = OpenAI(openai_api_key=os.getenv("OPEN_API_KEY"))
+        self.llm = OpenAI(openai_api_key=self.openai_api_key)
         self.templates = {
             'template': 
             """
