@@ -30,4 +30,4 @@ class Embedding:
 
             weather_dic.append(new_entry)
         
-        return weather_dic
+        return weather_dic  
