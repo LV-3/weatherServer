@@ -58,7 +58,24 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@62f4f872db3836360b72999f4b87f1ff13310f3a
-      
+            # Github Repository Secrets를 통해 환경 변수 파일을 생성합니다.
+        
+      - name: Generate Environment Variables File for Production
+        run: |
+          echo "CREDENTIALS_ACCESS_KEY=$CREDENTIALS_ACCESS_KEY" >> .env.production
+          echo "CREDENTIALS_SECRET_KEY=$CREDENTIALS_SECRET_KEY" >> .env.production
+          echo "DB_URL=$DB_URL" >> .env.production
+          echo "DB_NAME=$DB_NAME" >> .env.production
+          echo "COL_NAME=$COL_NAME" >> .env.production
+          echo "OPEN_API_KEY=$OPEN_API_KEY" >> .env.production
+        env:
+          CREDENTIALS_ACCESS_KEY: ${{ secrets.CREDENTIALS_ACCESS_KEY }}
+          CREDENTIALS_SECRET_KEY: ${{ secrets.CREDENTIALS_SECRET_KEY }}
+          DB_URL: ${{ secrets.DB_URL }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          COL_NAME: ${{ secrets.COL_NAME }}
+          OPEN_API_KEY: ${{ secrets.OPEN_API_KEY }}
+
       - name: Setup docker buildx
         id: buildx
         uses: docker/setup-buildx-action@v1
