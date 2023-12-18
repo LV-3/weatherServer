@@ -7,6 +7,6 @@ COPY ./requirements.txt /code/requirements.txt
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
 # 두 줄은 배포할 때 주석 해제하고 실행
-COPY ./app /code/app
+COPY . /code
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0","--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0","--port", "8000"]
