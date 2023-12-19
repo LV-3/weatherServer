@@ -25,7 +25,7 @@ class ExtractWord:
         self.templates = {
             'template': 
             """
-                오늘의 날씨는 {SKY},{PTY} 난 어떤 분위기와 장르를 주제로한 영화를 보면 좋을지, 분위기와 장르에 대한 단어를 추출해줘
+                Today's weather is {SKY}, {PTY} I wonder what kind of atmosphere and genre of movie would be good to watch. Extract words for atmosphere and genre.
 
                 Separate each mood word with a comma (,) and refrain from adding any additional information.
             """
@@ -66,5 +66,5 @@ class ExtractWord:
         if PTY == "없음": PTY = ""
 
         result = self.run_llm_chain(SKY_var=SKY, PTY_var=PTY, llm_openai_api_key=self.openai_api_key, template=self.templates.get("template"))
-            
+        print('result', result)
         return result
