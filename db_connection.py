@@ -27,8 +27,5 @@ def db_get(item):
     first_document = result.next()
 
     _id_value = first_document.get('_id')
-    # Update the document
-    result = collection.update_one({"_id": _id_value}, {"$set": item})
 
-    # Check if the document was found and updated
-    
+    result = collection.update_one({"_id": _id_value}, {"$set": item})    

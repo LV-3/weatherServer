@@ -8,10 +8,10 @@ import random
 class WeatherIndex:
     def __init__(self):
 
-        self.index = faiss.read_index('resources/weather_faiss_index.index')
+        self.index = faiss.read_index('resources/weather_faiss_index_1219.index')
 
         # index 파일 갈아끼기
-        with open('resources/FaissIndex2Content_id_weather.pickle','rb') as pickle_file:
+        with open('resources/FaissIndex2UniqueId_weather.pickle','rb') as pickle_file:
             self.FaissIndex2Content_id = pickle.load(pickle_file)
 
 

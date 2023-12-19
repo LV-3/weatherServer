@@ -64,7 +64,7 @@ async def process_payload(request: Request):
 
     item_dic = {"weather": weather_data, 
                 "content_id": sorted_rec_ctnt_id_list_1d_stacked,
-                "Img_Url": get_img_url}
+                "ImgUrl": get_img_url}
     
     db_get(item_dic)
 
