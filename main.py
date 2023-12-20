@@ -47,19 +47,25 @@ async def process_payload(request: Request):
 
     rec_ctnt_id_list_1d = [elm for sublist in ctnt_id_list for elm in sublist]
     
+
     SKY_VALUE = payload_data["last_sky_value"]
     PTY_VALUE = payload_data["last_pty_value"]
-    weather_data = SKY_VALUE +', '+ PTY_VALUE
+
 
     rec_ctnt_id_list_1d_stacked = Counter(rec_ctnt_id_list_1d)
     sorted_rec_ctnt_id_list_1d_stacked = [ key for key,_ in rec_ctnt_id_list_1d_stacked.most_common()]
 
+
     if PTY_VALUE == "없음":
         get_img_url = get_weather_img(SKY_VALUE)
+        weather_data = SKY_VALUE
+
     else:
         get_img_url = get_weather_img(PTY_VALUE)
+        weather_data = PTY_VALUE    
 
-
+    if weather_data == '빗방울눈날림':
+        weather_data = '빗방울/눈날림'
 
 
     item_dic = {"weather": weather_data, 
@@ -71,4 +77,3 @@ async def process_payload(request: Request):
     return ctnt_id_list
 
     # isA = upload_dict_to_s3(bucket=bucket_name, file_name=file_name, file=payload_data)
-
